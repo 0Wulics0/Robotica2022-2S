@@ -6,4 +6,9 @@ velMsg = rosmessage(velPub); %Creaci ́on de mensaje
 %%
 velMsg.Linear.X = 1; %Valor del mensaje
 send(velPub,velMsg); %Envio
-pause(1)
+
+a=rossubscriber("/turtle1/pose","turtlesim/Pose"); %Suscribirse a la posición de la tortuga
+PosX=a.LatestMessage.X %Obtener y guardar la posición
+
+%%Finalizar el nodo principal
+rosshutdown
